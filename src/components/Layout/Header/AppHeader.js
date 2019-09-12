@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import AppNavbar from './AppNavbar';
 
 
 export default class AppHeader extends React.Component {
 
     render() {
         return (
-            <Header>
+            <Header className="header">
                 <h1>Hola mundo!</h1>
             </Header>
         )
@@ -15,5 +16,5 @@ export default class AppHeader extends React.Component {
 
 
 const Header = styled.header`
-    background: red;
+    background: ${(props) => props.theme.primary}; 
 `
