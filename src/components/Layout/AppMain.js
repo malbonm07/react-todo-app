@@ -1,12 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import BoxShadowMixin from '../../Styles/mixins';
+import DayJS from 'react-dayjs';
 
 export default function AppMain(props) {
         return(
             <Main>
                 <Ul>
-                    {props.data.map(task => <Li key={task.id}>{task.title}</Li>)}
+                    {props.data.map(task => {
+                        const d = task.date.toISOString
+                        return <Li key={task.id}>
+                        {task.title}
+                        <br/>
+                        <p>{task.description}</p>
+                        <DayJS>{d}</DayJS>
+                        </Li>
+                    })}
                 </Ul>
             </Main>
         )
@@ -19,6 +28,7 @@ const Main = styled.main`
     background: blue;
     ${BoxShadowMixin(2)};
 `
+
 const Ul = styled.ul`
     width: 100%;
     min-height: calc(100vh - 170px);
