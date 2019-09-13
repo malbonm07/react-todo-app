@@ -3,17 +3,25 @@ import AppHeader from './components/Layout/Header/AppHeader';
 import AppMain from './components/Layout/AppMain';
 import AppFooter from './components/Layout/AppFooter';
 import styled, { ThemeProvider } from 'styled-components';
+import tasks from './data/tasks.json';
 
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Div className="App">
-        <AppHeader></AppHeader>
-        <AppMain></AppMain>
-        <AppFooter></AppFooter>
-      </Div>
-    </ThemeProvider>
-  );
+class App extends React.Component {
+
+  state = {
+    tasks: tasks
+  }
+
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <Div className="App">
+          <AppHeader></AppHeader>
+          <AppMain data={tasks}></AppMain>
+          <AppFooter></AppFooter>
+        </Div>
+      </ThemeProvider>
+    )
+  };
 }
 
 export default App;
@@ -34,9 +42,9 @@ const theme = {
 }
 
 const Div = styled.div`
+  width: 100%;
+  min-height: 100vh;
   background: ${(props) => props.theme.background};
   position: relative;
   text-align: center;
-  width: 100%;
-  min-height: 100vh;
 `
