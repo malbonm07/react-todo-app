@@ -2,7 +2,6 @@ import React from 'react';
 import AppHeader from './components/Layout/Header/AppHeader';
 import AppMain from './components/Layout/AppMain';
 import AppFooter from './components/Layout/AppFooter';
-import './App.scss';
 import styled, { ThemeProvider } from 'styled-components';
 
 function App() {
@@ -35,5 +34,9 @@ const theme = {
 }
 
 const Div = styled.div`
-  background: ${(props) => props.theme.background}
+  background: ${(props) => props.theme.background};
+  position: relative;
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
 `
