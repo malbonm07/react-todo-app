@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import BoxShadowMixin from '../../Styles/mixins';
 import DayJS from 'react-dayjs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 export default function AppMain(props) {
         return(
@@ -10,10 +12,15 @@ export default function AppMain(props) {
                     {props.data.map(task => {
                         const d = task.date.toISOString
                         return <Li key={task.id}>
-                        {task.title}
+                        <h1 className="text-h6 capitalize">{task.title}</h1>
                         <br/>
-                        <p>{task.description}</p>
-                        <DayJS>{d}</DayJS>
+                        <p className="text-body1">{task.description}</p>
+                        <br/>
+                        <p className="text-body1"><span className="text-medium">Date:&nbsp;</span>
+                        <span className="text-light"><DayJS>{d}</DayJS></span>
+                        </p>
+                        <br/>
+                        <Button><FontAwesomeIcon icon={faTrash} /></Button>
                         </Li>
                     })}
                 </Ul>
@@ -51,8 +58,36 @@ const Ul = styled.ul`
 const Li = styled.li`
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 10px;
     background: ${(props) => props.theme.surface};
     ${BoxShadowMixin(2)};
     border-radius: 3px;
+    border: 1px solid transparent;
+    position: relative;
+    :hover {
+        border-color: #BDBDBD;
+    }
+    @media screen and (min-width: 600px){
+        justify-content: center;
+    }
+`
+const Button = styled.button`
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 20px;
+    color: ${(props) => props.theme.error};
+    ${BoxShadowMixin(1)};
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    :hover {
+        background: #EEEEEE;
+    }
 `
