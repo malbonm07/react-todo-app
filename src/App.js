@@ -11,13 +11,17 @@ class App extends React.Component {
     tasks: tasks
   }
 
+  handleNewTask = (task) => {
+    this.setState((state) => state.tasks.push(task))
+  }
+
   render() {
     return (
       <ThemeProvider theme={theme}>
         <Div className="App">
           <AppHeader></AppHeader>
           <AppMain data={tasks}></AppMain>
-          <AppFooter></AppFooter>
+          <AppFooter handleNewTask={this.handleNewTask} id={this.state.tasks.length}></AppFooter>
         </Div>
       </ThemeProvider>
     )

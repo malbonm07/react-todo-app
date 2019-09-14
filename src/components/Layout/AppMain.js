@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BoxShadowMixin from '../../Styles/mixins';
 import DayJS from 'react-dayjs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons'
 
 export default function AppMain(props) {
         return(
@@ -12,14 +12,15 @@ export default function AppMain(props) {
                     {props.data.map(task => {
                         const d = task.date.toISOString
                         return <Li key={task.id}>
-                        <h1 className="text-h6 capitalize">{task.title}</h1>
+                        <h1 className="text-h6 capitalize" style={{width: "100%"}}>{task.title}</h1>
                         <br/>
                         <p className="text-body1">{task.description}</p>
                         <br/>
                         <p className="text-body1"><span className="text-medium">Date:&nbsp;</span>
-                        <span className="text-light"><DayJS>{d}</DayJS></span>
+                        <span className="text-light text-caption"><DayJS>{d}</DayJS></span>
                         </p>
                         <br/>
+                        <Button style={{right: "60px", color: "#018786"}}><FontAwesomeIcon icon={faCheck} /></Button>
                         <Button><FontAwesomeIcon icon={faTrash} /></Button>
                         </Li>
                     })}
@@ -31,9 +32,12 @@ export default function AppMain(props) {
 const Main = styled.main`
     width: calc(100% - 10px);
     min-height: calc(100vh - 170px);
-    margin: 5px 5px;
+    margin: 5px 5px 55px 5px;
     background: blue;
     ${BoxShadowMixin(2)};
+    @media screen and (min-width: 600px){
+        margin-bottom: 105px
+    }
 `
 
 const Ul = styled.ul`
@@ -41,7 +45,7 @@ const Ul = styled.ul`
     min-height: calc(100vh - 170px);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    grid-auto-rows: minmax(140px, auto);
+    grid-auto-rows: minmax(250px, auto);
     grid-gap: 5px;
     align-items: center;
     padding: 5px;
@@ -85,9 +89,13 @@ const Button = styled.button`
     ${BoxShadowMixin(1)};
     cursor: pointer;
     position: absolute;
-    right: 20px;
-    bottom: 20px;
+    right: 10px;
+    bottom: 10px;
     :hover {
         background: #EEEEEE;
+    }
+    @media screen and (min-width: 600px){
+        right: 15px;
+        bottom: 20px;
     }
 `

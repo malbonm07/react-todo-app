@@ -7,7 +7,7 @@ export default class AppFooter extends React.Component {
     render() {
         return(
             <Footer>
-                <AppNewTodoBtn></AppNewTodoBtn>
+                <AppNewTodoBtn id={this.props.id} handleNewTask={this.props.handleNewTask}></AppNewTodoBtn>
             </Footer>
         )
     }
@@ -15,7 +15,12 @@ export default class AppFooter extends React.Component {
 
 const Footer = styled.footer`
     width: 100%;
-    position: relative;
-    min-height: 100px;
+    position: fixed;
+    min-height: 50px;
     background: ${(props) => props.theme.primary};
+    bottom: 0;
+    left: 0;
+    @media screen and (min-width: 600px){
+        min-height: 100px;
+    }
 `
