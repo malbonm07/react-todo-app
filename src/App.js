@@ -37,12 +37,14 @@ const theme = {
   secondaryVariant: "#018786",
   background: "#E5E5E5",
   surface: "#ffffff",
+  positive: "#CCFF90",
   error: "#b00020",
   onPrimary: "#ffffff",
   onSecondary: "#000000",
   onBackground: "#000000",
   onSurface: "#000000",
   onError: "#ffffff",
+  grey: "#BDBDBD",
 }
 
 const Div = styled.div`

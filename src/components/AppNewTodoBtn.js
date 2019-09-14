@@ -46,9 +46,9 @@ export default class AppButton extends React.Component {
                     <FontAwesomeIcon icon={faPlus} />
                 </Button>
                 {this.state.show ? 
-                <Dialog onClick={(e) => {
-                    let outer = e.target.classList[0];
-                    if(outer === 'sc-dnqmqq') {
+                <Dialog id="dialog" onClick={(e) => {
+                    let outer = e.target.id;
+                    if(outer === 'dialog') {
                         this.setState({show: false})
                     }
                 }}>

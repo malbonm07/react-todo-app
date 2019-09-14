@@ -11,8 +11,10 @@ export default function AppMain(props) {
                 <Ul>
                     {props.data.map(task => {
                         const d = task.date.toISOString
-                        return <Li key={task.id}>
-                        <h1 className="text-h6 capitalize" style={{width: "100%"}}>{task.title}</h1>
+                        return <Li key={task.id} done={task.done}>
+                        <h1 className="text-h6 capitalize" style={{width: "100%"}}>{task.title}<br/>
+                        {task.done ? <span className="text-overline positive">complete</span> : null}
+                        </h1>
                         <br/>
                         <p className="text-body1">{task.description}</p>
                         <br/>
@@ -20,8 +22,8 @@ export default function AppMain(props) {
                         <span className="text-light text-caption"><DayJS>{d}</DayJS></span>
                         </p>
                         <br/>
-                        <Button style={{right: "60px", color: "#018786"}}><FontAwesomeIcon icon={faCheck} /></Button>
-                        <Button><FontAwesomeIcon icon={faTrash} /></Button>
+                        <Done done={task.done} style={btn}><FontAwesomeIcon icon={faCheck} /></Done>
+                        <Delete style={btn}><FontAwesomeIcon icon={faTrash} /></Delete>
                         </Li>
                     })}
                 </Ul>
@@ -32,7 +34,7 @@ export default function AppMain(props) {
 const Main = styled.main`
     width: calc(100% - 10px);
     min-height: calc(100vh - 170px);
-    margin: 5px 5px 55px 5px;
+    margin: 5px 5px 65px 5px;
     background: blue;
     ${BoxShadowMixin(2)};
     @media screen and (min-width: 600px){
@@ -66,7 +68,7 @@ const Li = styled.li`
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background: ${(props) => props.theme.surface};
+    background: ${(props) => props.done ? props.theme.positive : props.theme.surface};
     ${BoxShadowMixin(2)};
     border-radius: 3px;
     border: 1px solid transparent;
@@ -78,21 +80,43 @@ const Li = styled.li`
         justify-content: center;
     }
 `
-const Button = styled.button`
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: none;
-    border-radius: 50%;
-    font-size: 20px;
-    color: ${(props) => props.theme.error};
+
+const btn = {
+    width: "40px",
+    height: "40px",
+    border: "none",
+    borderRadius: "50%",
+    fontSize: "20px",
+    cursor: "pointer",
+    position: "absolute",
+    right: "10px",
+    bottom: "10px",
+    transition: "0.25s",
+}
+
+const Done = styled.button`
+    color: ${(props) => props.done ? props.theme.onPrimary : props.theme.grey};
+    background: ${(props) => props.done ? props.theme.secondary : props.theme.surface};
     ${BoxShadowMixin(1)};
     cursor: pointer;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
+    right: 60px !important;
     :hover {
-        background: #EEEEEE;
+        background: ${(props) => props.done ? props.theme.surface : props.theme.secondary};
+        color: ${(props) => props.done ? props.theme.grey : props.theme.onPrimary};
+    }
+    @media screen and (min-width: 600px){
+        right: 15px;
+        bottom: 20px;
+    }
+`
+
+const Delete = styled.button`
+    color: ${(props) => props.theme.surface};
+    ${BoxShadowMixin(1)};
+    cursor: pointer;
+    background: ${(props) => props.theme.error};
+    :hover {
+        background: #C62828;
     }
     @media screen and (min-width: 600px){
         right: 15px;
