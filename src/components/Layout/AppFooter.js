@@ -7,7 +7,7 @@ export default class AppFooter extends React.Component {
     render() {
         return(
             <Footer>
-                <AppNewTodoBtn id={this.props.id} handleNewTask={this.props.handleNewTask}></AppNewTodoBtn>
+                <AppNewTodoBtn handleNewTask={this.props.handleNewTask}></AppNewTodoBtn>
             </Footer>
         )
     }
