@@ -13,6 +13,7 @@ The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
 ![alt text](https://i.imgur.com/e1vSsBl.png)
+![alt text](https://i.imgur.com/qtxb6fu.png)
 
 ## Learn More
 
